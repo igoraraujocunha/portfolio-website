@@ -15,8 +15,8 @@ const COMMANDS: Record<string, string> = {
     "Igor de Araujo C. Costa - Computer Scientist & Software Engineer. \nB.S. in Computer Science from UVA.\nPost-grad in Software Engineering at PUC-Rio.",
   games: "Valorant, Project Zomboid, Arcane Odyssey",
   skills:
-    "TypeScript, Python, React, Next.js, Node.js, PostgreSQL, Docker, Lua/Luau, Git, CI/CD",
-  contact: "GitHub: github.com/iguinh0w\nEmail: igor@example.com",
+    "TypeScript, Java (Spring Boot), React, Next.js, Node.js, PostgreSQL, AWS, Docker, Lua, Git, CI/CD",
+  contact: "GitHub: github.com/igoraraujocunha\nLinkedIn: linkedin.com/in/igoraraujocunha/\nEmail: igor.araujo.dev@outlook.com",
 };
 
 export function TerminalSection() {

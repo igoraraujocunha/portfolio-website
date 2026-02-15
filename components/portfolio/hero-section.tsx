@@ -15,7 +15,7 @@ export function HeroSection() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="font-mono text-gold mb-5 text-sm"
         >
-          Hi, my name is
+          Fullstack Developer
         </motion.p>
 
         <motion.h1
@@ -43,9 +43,10 @@ export function HeroSection() {
           transition={{ duration: 0.4, delay: 0.65 }}
           className="mt-6 max-w-xl text-muted-foreground leading-relaxed"
         >
-          I specialize in building and architecting robust, scalable software
-          systems. Currently focused on system architecture, quality assurance,
-          and delivering high-performance digital experiences.
+          I am a Computer Scientist specialized in building high-performance 
+          software systems. Currently deepening my expertise in Software Engineering, 
+          I focus on delivering scalable solutions through Clean Architecture, 
+          SOLID principles, and modern development practices.
         </motion.p>
 
         <motion.div

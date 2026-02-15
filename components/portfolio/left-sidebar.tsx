@@ -10,9 +10,9 @@ interface SocialLink {
 }
 
 const socials: SocialLink[] = [
-  { icon: Github, href: "https://github.com/iguinh0w", label: "GitHub" },
+  { icon: Github, href: "https://github.com/igoraraujocunha", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/igoraraujocunha/", label: "LinkedIn" },
-  { icon: Instagram, href: "https://instagram.com/iguinh0w", label: "Instagram" },
+  { icon: Instagram, href: "", label: "Instagram" },
 ];
 
 export function LeftSidebar() {

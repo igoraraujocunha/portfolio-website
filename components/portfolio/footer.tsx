@@ -20,7 +20,7 @@ export function Footer() {
           View the Archive
         </Link>
         <p className="font-mono text-xs text-muted-foreground text-center">
-          Designed & Built by Igor Araujo
+          © 2026 Designed & Built by Igor Araujo | Todos os direitos reservados.
         </p>
       </motion.div>
     </footer>

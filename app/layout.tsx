@@ -16,7 +16,7 @@ const firaCode = Fira_Code({
 export const metadata: Metadata = {
   title: 'Igor de Araujo C. Costa | Computer Scientist & Software Engineer',
   description:
-    'Portfolio of Igor — Software Engineer focused on system architecture, scalable solutions, and quality assurance.',
+    'Portfolio of Igor — Software Engineer focused on system architecture, scalable solutions, and modern development practices.',
 }
 
 export const viewport: Viewport = {

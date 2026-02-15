@@ -29,22 +29,24 @@ export function AboutSection() {
             className="md:col-span-2 space-y-4 text-muted-foreground leading-relaxed"
           >
             <p>
-              Greetings! I am Igor, a Computer Scientist and Software Engineer passionate
-              about building clean, performant systems and ensuring every piece
-              of software meets the highest standards of quality.
+              Greetings! I am Igor, a Software Engineer dedicated 
+              to writing efficient code and 
+              solving technical challenges with a solid engineering foundation.
             </p>
             <p>
-              I hold a{" "}
+              My technical journey is built on two main pillars: a{" "}
               <span className="text-gold">
-                B.S. in Computer Science from UVA
+                B.S. in Computer Science from UVA,
               </span>{" "}
-              and I am currently pursuing a{" "}
+              which provided me with deep knowledge in algorithms and systems, and my current{" "}
               <span className="text-gold">
                 Post-grad in Software Engineering at PUC-Rio
               </span>
-              . My academic background combined with hands-on experience drives
-              my focus on system architecture, scalable solutions, and
-              test-driven development.
+              , where I am mastering architectural patterns and system scalability.
+            </p>
+            <p>
+              I am focused on bridging the gap between complex theoretical concepts
+               and practical, secure software delivery.
             </p>
             <p>
               Here are some technologies I have been working with recently:

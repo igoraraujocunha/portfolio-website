@@ -14,7 +14,7 @@ export default function Page() {
       <HeroSection />
       <AboutSection />
       <ExperienceSection />
-      {/* <EducationSection /> */}
+      <EducationSection />
       {/* <CertificationSection /> */}
       <ProjectsSection />
       {/* <SetupSection /> */}

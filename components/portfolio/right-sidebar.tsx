@@ -11,11 +11,11 @@ export function RightSidebar() {
       className="fixed bottom-0 right-6 z-10 hidden lg:flex flex-col items-center gap-6 xl:right-12"
     >
       <a
-        href="mailto:igor@example.com"
+        href="mailto:igor.araujo.dev@outlook.com"
         className="font-mono text-xs tracking-widest text-muted-foreground hover:text-gold hover:-translate-y-1 transition-all duration-200"
         style={{ writingMode: "vertical-rl" }}
       >
-        igor@example.com
+        igor.araujo.dev@outlook.com
       </a>
       <div className="w-px h-24 bg-muted-foreground" />
     </motion.div>

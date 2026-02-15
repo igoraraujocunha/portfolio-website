@@ -103,15 +103,15 @@ export default function ResumePage() {
             {/* Header */}
             <header className="mb-10 border-b border-border pb-8">
               <h1 className="text-4xl font-bold text-foreground mb-1">
-                Igor <span className="text-gold">(Iguinh0w)</span>
+                Igor de Araujo Cunha Costa
               </h1>
               <p className="text-lg text-muted-foreground mb-4">
-                Software Engineer & QA Specialist
+                Computer Scientist & Software Engineer
               </p>
               <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs text-muted-foreground">
-                <span>igor@example.com</span>
-                <span>github.com/iguinh0w</span>
-                <span>linkedin.com/in/iguinh0w</span>
+                <span>igor.araujo.dev@outlook.com</span>
+                <span>github.com/igoraraujocunha</span>
+                <span>linkedin.com/in/igoraraujocunha</span>
               </div>
             </header>
 
@@ -121,11 +121,10 @@ export default function ResumePage() {
                 Summary
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Software Engineer with a B.S. in Computer Science and a focus on
-                system architecture, scalable solutions, and quality assurance.
-                Currently pursuing a Post-grad in Software Engineering at PUC-Rio.
-                Experienced in full-stack development, test-driven workflows, and
-                building performant digital experiences.
+                Computer Scientist specialized in building high-performance software systems. 
+                Currently deepening my expertise in Software Engineering, 
+                I focus on delivering scalable solutions through Clean Architecture, 
+                SOLID principles, and modern development practices.
               </p>
             </section>
 
