@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Languages } from "lucide-react";
 import Link from "next/link";
 
 interface NavLink {
@@ -14,9 +14,9 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: "About", href: "/#about", number: "01" },
   { label: "Experience", href: "/#experience", number: "02" },
-  { label: "Projects", href: "/#projects", number: "03" },
-  { label: "Setup", href: "/#setup", number: "00" },
-  { label: "Terminal", href: "/#terminal", number: "04" },
+  { label: "Education", href: "/#education", number: "03" },
+  { label: "Projects", href: "/#projects", number: "04" },
+  { label: "Terminal", href: "/#terminal", number: "05" },
 ];
 
 export function Navbar() {
@@ -24,6 +24,13 @@ export function Navbar() {
   const [visible, setVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  
+  const [lang, setLang] = useState<"EN" | "PT">("EN");
+
+  const toggleLanguage = () => {
+    setLang((prev) => (prev === "EN" ? "PT" : "EN"));
+
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,10 +40,8 @@ export function Navbar() {
       if (currentY < 50) {
         setVisible(true);
       } else if (currentY < lastScrollY) {
-        // scrolling UP
         setVisible(true);
       } else if (currentY > lastScrollY) {
-        // scrolling DOWN
         setVisible(false);
       }
 
@@ -89,18 +94,34 @@ export function Navbar() {
               ))}
             </ul>
 
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-            >
-              <Link
-                href="/resume"
-                className="rounded border border-gold px-4 py-2 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
+            <div className="flex items-center gap-4">
+              {/* Botão de Tradução (Desktop) */}
+              <motion.button
+                onClick={toggleLanguage}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 }}
+                className="flex items-center gap-2 rounded border border-gold/20 px-3 py-2 font-mono text-xs text-gold transition-all hover:bg-gold/10 hover:border-gold"
+                title="Switch Language"
               >
-                Resume
-              </Link>
-            </motion.div>
+                <Languages className="h-4 w-4" />
+                <span>{lang}</span>
+              </motion.button>
+
+              {/* Botão Resume */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.6 }}
+              >
+                <Link
+                  href="/resume"
+                  className="rounded border border-gold px-4 py-2 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
+                >
+                  Resume
+                </Link>
+              </motion.div>
+            </div>
           </div>
 
           <button
@@ -151,13 +172,25 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/resume"
-                onClick={() => setMobileOpen(false)}
-                className="mt-4 rounded border border-gold px-6 py-3 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
-              >
-                Resume
-              </Link>
+
+              <div className="flex flex-col items-center gap-4 mt-4 w-full px-6">
+                {/* Botão de Tradução (Mobile) */}
+                <button
+                  onClick={toggleLanguage}
+                  className="flex items-center justify-center gap-2 w-full rounded border border-gold/20 py-3 font-mono text-sm text-gold transition-all hover:bg-gold/10"
+                >
+                  <Languages className="h-5 w-5" />
+                  <span>Language: {lang}</span>
+                </button>
+
+                <Link
+                  href="/resume"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full text-center rounded border border-gold px-6 py-3 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
+                >
+                  Resume
+                </Link>
+              </div>
             </motion.aside>
           </>
         )}

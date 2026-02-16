@@ -24,18 +24,18 @@ const projects: Project[] = [
     external: "#",
   },
   {
-    title: "QA Automation Suite",
+    title: "Project 1",
     description:
-      "An automated testing framework for Roblox game environments. Streamlines regression testing and provides detailed bug reports with video capture and structured logging.",
-    tags: ["Lua", "Python", "Automation", "CI/CD"],
+      "Description",
+    tags: ["Languages"],
     featured: false,
     github: "#",
   },
   {
-    title: "System Monitor CLI",
+    title: "Project 2",
     description:
-      "A command-line tool for real-time monitoring of system resources, process management, and performance logging. Built for developer workflows.",
-    tags: ["Python", "CLI", "Linux"],
+      "Descriptions",
+    tags: ["Languages"],
     featured: false,
     github: "#",
   },
@@ -153,7 +153,7 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="03" title="Things I've Built" />
+        <SectionHeading number="04" title="Projects" />
 
         <div className="space-y-8">
           {featured.map((project) => (

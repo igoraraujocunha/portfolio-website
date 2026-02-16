@@ -13,9 +13,9 @@ interface ExperienceEntry {
 
 const experiences: ExperienceEntry[] = [
   {
-    company: "Freelance",
-    title: "QA Tester @ Roblox Games",
-    range: "2023 - Present",
+    company: "Fynco",
+    title: "Fullstack Developer",
+    range: "Jun 2025 - Present",
     bullets: [
       "Perform comprehensive functional and regression testing on Roblox game projects, ensuring high quality standards before release.",
       "Develop and execute detailed test plans, identifying bugs relating to game mechanics, UI/UX, performance, and scripting logic.",
@@ -52,7 +52,7 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="02" title="Where I've Worked" />
+        <SectionHeading number="02" title="Experience" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
