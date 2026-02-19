@@ -5,7 +5,7 @@ export const pt = {
     education: "Formação",
     projects: "Projetos",
     terminal: "Terminal",
-    resume: "Currículo",
+    resume: "Resumo",
     archive: "Arquivo"
   },
   hero: {
