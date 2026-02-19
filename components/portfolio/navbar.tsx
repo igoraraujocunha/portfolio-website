@@ -4,32 +4,25 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Languages } from "lucide-react";
 import Link from "next/link";
-
-interface NavLink {
-  label: string;
-  href: string;
-  number: string;
-}
-
-const navLinks: NavLink[] = [
-  { label: "About", href: "/#about", number: "01" },
-  { label: "Experience", href: "/#experience", number: "02" },
-  { label: "Education", href: "/#education", number: "03" },
-  { label: "Projects", href: "/#projects", number: "04" },
-  { label: "Terminal", href: "/#terminal", number: "05" },
-];
+import { useLanguage } from "@/hooks/use-language";
 
 export function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  
-  const [lang, setLang] = useState<"EN" | "PT">("EN");
+
+  const navLinks = [
+    { label: t.nav.about, href: "/#about", number: "01" },
+    { label: t.nav.experience, href: "/#experience", number: "02" },
+    { label: t.nav.education, href: "/#education", number: "03" },
+    { label: t.nav.projects, href: "/#projects", number: "04" },
+    { label: t.nav.terminal, href: "/#terminal", number: "05" },
+  ];
 
   const toggleLanguage = () => {
-    setLang((prev) => (prev === "EN" ? "PT" : "EN"));
-
+    setLanguage(language === "en" ? "pt" : "en");
   };
 
   useEffect(() => {
@@ -37,14 +30,11 @@ export function Navbar() {
       const currentY = window.scrollY;
       setScrolled(currentY > 50);
 
-      if (currentY < 50) {
-        setVisible(true);
-      } else if (currentY < lastScrollY) {
+      if (currentY < 50 || currentY < lastScrollY) {
         setVisible(true);
       } else if (currentY > lastScrollY) {
         setVisible(false);
       }
-
       setLastScrollY(currentY);
     };
 
@@ -65,10 +55,7 @@ export function Navbar() {
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
-          <Link
-            href="/"
-            className="font-mono text-gold text-lg font-bold hover:text-gold/80 transition-colors"
-          >
+          <Link href="/" className="font-mono text-gold text-lg font-bold hover:text-gold/80 transition-colors">
             {"<I/>"}
           </Link>
 
@@ -81,13 +68,8 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: i * 0.1 }}
                 >
-                  <Link
-                    href={link.href}
-                    className="group flex items-center gap-1 text-sm text-muted-foreground hover:text-gold transition-colors"
-                  >
-                    <span className="font-mono text-gold text-xs">
-                      {link.number}.
-                    </span>
+                  <Link href={link.href} className="group flex items-center gap-1 text-sm text-muted-foreground hover:text-gold transition-colors">
+                    <span className="font-mono text-gold text-xs">{link.number}.</span>
                     {link.label}
                   </Link>
                 </motion.li>
@@ -95,20 +77,18 @@ export function Navbar() {
             </ul>
 
             <div className="flex items-center gap-4">
-              {/* Botão de Tradução (Desktop) */}
               <motion.button
                 onClick={toggleLanguage}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="flex items-center gap-2 rounded border border-gold/20 px-3 py-2 font-mono text-xs text-gold transition-all hover:bg-gold/10 hover:border-gold"
+                className="flex items-center gap-2 rounded border border-gold/20 px-3 py-2 font-mono text-xs text-gold transition-all hover:bg-gold/10 hover:border-gold uppercase"
                 title="Switch Language"
               >
                 <Languages className="h-4 w-4" />
-                <span>{lang}</span>
+                <span>{language}</span>
               </motion.button>
 
-              {/* Botão Resume */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -118,23 +98,18 @@ export function Navbar() {
                   href="/resume"
                   className="rounded border border-gold px-4 py-2 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
                 >
-                  Resume
+                  {t.nav.resume}
                 </Link>
               </motion.div>
             </div>
           </div>
 
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="md:hidden text-gold"
-            aria-label="Open menu"
-          >
+          <button onClick={() => setMobileOpen(true)} className="md:hidden text-gold" aria-label="Open menu">
             <Menu className="h-6 w-6" />
           </button>
         </nav>
       </motion.header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -152,11 +127,7 @@ export function Navbar() {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed right-0 top-0 z-50 h-full w-72 bg-secondary p-8 flex flex-col items-center justify-center gap-8"
             >
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="absolute top-6 right-6 text-gold"
-                aria-label="Close menu"
-              >
+              <button onClick={() => setMobileOpen(false)} className="absolute top-6 right-6 text-gold" aria-label="Close menu">
                 <X className="h-6 w-6" />
               </button>
               {navLinks.map((link) => (
@@ -166,21 +137,18 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="flex flex-col items-center gap-1 text-lg text-muted-foreground hover:text-gold transition-colors"
                 >
-                  <span className="font-mono text-gold text-sm">
-                    {link.number}.
-                  </span>
+                  <span className="font-mono text-gold text-sm">{link.number}.</span>
                   {link.label}
                 </Link>
               ))}
 
               <div className="flex flex-col items-center gap-4 mt-4 w-full px-6">
-                {/* Botão de Tradução (Mobile) */}
                 <button
                   onClick={toggleLanguage}
-                  className="flex items-center justify-center gap-2 w-full rounded border border-gold/20 py-3 font-mono text-sm text-gold transition-all hover:bg-gold/10"
+                  className="flex items-center justify-center gap-2 w-full rounded border border-gold/20 py-3 font-mono text-sm text-gold transition-all hover:bg-gold/10 uppercase"
                 >
                   <Languages className="h-5 w-5" />
-                  <span>Language: {lang}</span>
+                  <span>{language}</span>
                 </button>
 
                 <Link
@@ -188,7 +156,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="w-full text-center rounded border border-gold px-6 py-3 font-mono text-sm text-gold transition-colors hover:bg-gold/10"
                 >
-                  Resume
+                  {t.nav.resume}
                 </Link>
               </div>
             </motion.aside>

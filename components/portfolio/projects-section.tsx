@@ -1,102 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Folder } from "lucide-react";
+import { Folder, Github, ExternalLink } from "lucide-react";
 import { SectionHeading } from "./section-heading";
+import { useLanguage } from "@/hooks/use-language";
 
-interface Project {
+interface ProjectItem {
   title: string;
   description: string;
   tags: string[];
-  featured: boolean;
   github?: string;
   external?: string;
 }
 
-const projects: Project[] = [
-  {
-    title: "VavaHelper",
-    description:
-      "A robust multi-platform system designed for the Valorant community. It features a dedicated REST API for processing Riot Games data, a high-performance analytics web hub, and a mobile companion app, showcasing expertise in distributed systems and real-time data integration.",
-    tags: ["Typescript", "React", "Next.js", "Tailwind CSS", "Java", "Spring Boot", "Spring Security", "JPA", "JWT", "PostgreSQL", "Maven", "Ionic", "Vue.js", "Axios"],
-    featured: true,
-    github: "#",
-    external: "#",
-  },
-  {
-    title: "Project 1",
-    description:
-      "Description",
-    tags: ["Languages"],
-    featured: false,
-    github: "#",
-  },
-  {
-    title: "Project 2",
-    description:
-      "Descriptions",
-    tags: ["Languages"],
-    featured: false,
-    github: "#",
-  },
-];
-
-function FeaturedProject({ project }: { project: Project }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5 }}
-      className="relative rounded-lg border border-border bg-secondary/50 p-8 transition-all hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5"
-    >
-      <div className="flex items-center justify-between mb-4">
-        <span className="font-mono text-gold text-sm">Featured Project</span>
-        <div className="flex gap-3">
-          {project.github && (
-            <a
-              href={project.github}
-              className="text-muted-foreground hover:text-gold transition-colors"
-              aria-label={`GitHub link for ${project.title}`}
-            >
-              <Github className="h-5 w-5" />
-            </a>
-          )}
-          {project.external && (
-            <a
-              href={project.external}
-              className="text-muted-foreground hover:text-gold transition-colors"
-              aria-label={`External link for ${project.title}`}
-            >
-              <ExternalLink className="h-5 w-5" />
-            </a>
-          )}
-        </div>
-      </div>
-
-      <h3 className="text-2xl font-semibold text-foreground mb-4 hover:text-gold transition-colors">
-        {project.title}
-      </h3>
-
-      <p className="text-muted-foreground leading-relaxed mb-6">
-        {project.description}
-      </p>
-
-      <ul className="flex flex-wrap gap-3 font-mono text-xs text-muted-foreground">
-        {project.tags.map((tag) => (
-          <li
-            key={tag}
-            className="rounded-full bg-gold/10 px-3 py-1 text-gold"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-}
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -144,26 +61,59 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export function ProjectsSection() {
-  const featured = projects.filter((p) => p.featured);
-  const other = projects.filter((p) => !p.featured);
+  const { t } = useLanguage();
+  const featuredProject = t.projects.items[0];
+  const otherProjects = t.projects.other_projects as ProjectItem[];
 
   return (
     <section id="projects" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="04" title="Projects" />
+        <SectionHeading number="04" title={t.projects.title} />
 
         <div className="space-y-8">
-          {featured.map((project) => (
-            <FeaturedProject key={project.title} project={project} />
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            className="relative rounded-lg border border-border bg-secondary/50 p-8 transition-all hover:border-gold/30 hover:shadow-lg hover:shadow-gold/5"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-mono text-gold text-sm">{t.projects.featured_label}</span>
+              <div className="flex gap-3">
+                <a href={featuredProject.github} className="text-muted-foreground hover:text-gold transition-colors">
+                  <Github className="h-5 w-5" />
+                </a>
+                <a href={featuredProject.external} className="text-muted-foreground hover:text-gold transition-colors">
+                  <ExternalLink className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-foreground mb-4 hover:text-gold transition-colors">
+              {featuredProject.title}
+            </h3>
+
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              {featuredProject.description}
+            </p>
+
+            <ul className="flex flex-wrap gap-3 font-mono text-xs text-muted-foreground">
+              {featuredProject.tags.map((tag: string) => (
+                <li key={tag} className="rounded-full bg-gold/10 px-3 py-1 text-gold">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
         <h3 className="text-center text-xl font-semibold text-foreground mt-20 mb-10">
-          Other Noteworthy Projects
+          {t.projects.noteworthy_label}
         </h3>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {other.map((project, i) => (
+          {otherProjects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>

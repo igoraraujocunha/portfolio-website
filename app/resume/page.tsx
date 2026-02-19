@@ -4,66 +4,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Printer } from "lucide-react";
 import { PortfolioLayout } from "@/components/portfolio/portfolio-layout";
-
-interface EducationEntry {
-  institution: string;
-  degree: string;
-  period: string;
-}
-
-interface ExperienceEntry {
-  role: string;
-  company: string;
-  period: string;
-  details: string[];
-}
-
-const education: EducationEntry[] = [
-  {
-    institution: "PUC-Rio",
-    degree: "Post-grad in Software Engineering",
-    period: "2024 - Present",
-  },
-  {
-    institution: "UVA",
-    degree: "B.S. in Computer Science",
-    period: "2020 - 2024",
-  },
-];
-
-const experience: ExperienceEntry[] = [
-  {
-    role: "Freelance QA Tester",
-    company: "Roblox Games",
-    period: "2023 - Present",
-    details: [
-      "Perform comprehensive functional and regression testing on Roblox game projects",
-      "Develop and execute detailed test plans identifying bugs in game mechanics, UI/UX, and scripting logic",
-      "Collaborate with developers using structured QA workflows for bug triage and verification",
-      "Provide actionable feedback on gameplay balance and edge-case scenarios",
-    ],
-  },
-];
-
-const skills: string[] = [
-  "TypeScript",
-  "Python",
-  "React / Next.js",
-  "Node.js",
-  "PostgreSQL",
-  "Docker",
-  "Lua / Luau",
-  "Git / CI-CD",
-  "Linux",
-  "Tailwind CSS",
-  "REST APIs",
-  "Testing / QA",
-];
+import { useLanguage } from "@/hooks/use-language";
 
 export default function ResumePage() {
-  const handlePrint = () => {
-    window.print();
-  };
+  const { t } = useLanguage();
+  const experience = t.experience.jobs;
+  const education = t.education.academic_list.filter((e) => e.featured);
+  const skills = t.resume.skills_list;
 
   return (
     <PortfolioLayout>
@@ -81,32 +28,30 @@ export default function ResumePage() {
                 className="inline-flex items-center gap-2 font-mono text-sm text-gold hover:underline underline-offset-4 print:hidden"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back Home
+                {t.resume.back}
               </Link>
               <button
-                onClick={handlePrint}
+                onClick={() => window.print()}
                 className="inline-flex items-center gap-2 rounded border border-gold px-4 py-2 font-mono text-sm text-gold transition-colors hover:bg-gold/10 print:hidden"
               >
                 <Printer className="h-4 w-4" />
-                Print
+                {t.resume.print}
               </button>
             </div>
           </motion.div>
 
-          {/* Resume Document */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
             className="rounded-lg border border-border bg-secondary/30 p-8 lg:p-12 print:border-none print:bg-transparent print:p-0"
           >
-            {/* Header */}
             <header className="mb-10 border-b border-border pb-8">
               <h1 className="text-4xl font-bold text-foreground mb-1">
-                Igor de Araujo Cunha Costa
+                {t.hero.name}
               </h1>
               <p className="text-lg text-muted-foreground mb-4">
-                Computer Scientist & Software Engineer
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs text-muted-foreground">
                 <span>igor.araujo.dev@outlook.com</span>
@@ -115,41 +60,32 @@ export default function ResumePage() {
               </div>
             </header>
 
-            {/* Summary */}
             <section className="mb-10">
               <h2 className="font-mono text-sm font-semibold text-gold uppercase tracking-wider mb-4">
-                Summary
+                {t.resume.summary}
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Computer Scientist specialized in building high-performance software systems. 
-                Currently deepening my expertise in Software Engineering, 
-                I focus on delivering scalable solutions through Clean Architecture, 
-                SOLID principles, and modern development practices.
+                {t.hero.description}
               </p>
             </section>
 
-            {/* Experience */}
             <section className="mb-10">
               <h2 className="font-mono text-sm font-semibold text-gold uppercase tracking-wider mb-4">
-                Experience
+                {t.resume.experience}
               </h2>
               {experience.map((exp) => (
-                <div key={exp.role} className="mb-6 last:mb-0">
+                <div key={exp.company} className="mb-6 last:mb-0">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
                     <h3 className="text-sm font-medium text-foreground">
-                      {exp.role}{" "}
-                      <span className="text-gold">@ {exp.company}</span>
+                      {exp.title} <span className="text-gold">@ {exp.company}</span>
                     </h3>
                     <span className="font-mono text-xs text-muted-foreground">
-                      {exp.period}
+                      {exp.range}
                     </span>
                   </div>
                   <ul className="space-y-2">
-                    {exp.details.map((detail, i) => (
-                      <li
-                        key={i}
-                        className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
-                      >
+                    {exp.bullets.map((detail, i) => (
+                      <li key={i} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
                         <span className="text-gold shrink-0 mt-0.5">{">"}</span>
                         <span>{detail}</span>
                       </li>
@@ -159,42 +95,28 @@ export default function ResumePage() {
               ))}
             </section>
 
-            {/* Education */}
             <section className="mb-10">
               <h2 className="font-mono text-sm font-semibold text-gold uppercase tracking-wider mb-4">
-                Education
+                {t.resume.education}
               </h2>
               {education.map((edu) => (
-                <div
-                  key={edu.institution}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 last:mb-0"
-                >
+                <div key={edu.institution} className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 last:mb-0">
                   <div>
-                    <h3 className="text-sm font-medium text-foreground">
-                      {edu.degree}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {edu.institution}
-                    </p>
+                    <h3 className="text-sm font-medium text-foreground">{edu.title}</h3>
+                    <p className="text-sm text-muted-foreground">{edu.institution}</p>
                   </div>
-                  <span className="font-mono text-xs text-muted-foreground">
-                    {edu.period}
-                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">{edu.period}</span>
                 </div>
               ))}
             </section>
 
-            {/* Skills */}
             <section>
               <h2 className="font-mono text-sm font-semibold text-gold uppercase tracking-wider mb-4">
-                Skills
+                {t.resume.skills}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full bg-gold/10 px-3 py-1 font-mono text-xs text-gold"
-                  >
+                  <span key={skill} className="rounded-full bg-gold/10 px-3 py-1 font-mono text-xs text-gold">
                     {skill}
                   </span>
                 ))}

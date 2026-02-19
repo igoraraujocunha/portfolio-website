@@ -2,23 +2,20 @@
 
 import { motion } from "framer-motion";
 import { SectionHeading } from "./section-heading";
+import { useLanguage } from "@/hooks/use-language";
 
 const technologies: string[] = [
-  "TypeScript",
-  "Java / Spring Boot",
-  "React / Next.js",
-  "Node.js",
-  "PostgreSQL",
-  "Docker",
-  "Lua",
-  "Git / CI-CD",
+  "TypeScript", "Java / Spring Boot", "React / Next.js", "Node.js",
+  "PostgreSQL", "Docker", "Lua", "Git / CI-CD",
 ];
 
 export function AboutSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="01" title="About Me" />
+        <SectionHeading number="01" title={t.about.title} />
 
         <div className="grid gap-12 md:grid-cols-3">
           <motion.div
@@ -28,29 +25,16 @@ export function AboutSection() {
             transition={{ duration: 0.5 }}
             className="md:col-span-2 space-y-4 text-muted-foreground leading-relaxed"
           >
+            <p>{t.about.greeting}</p>
             <p>
-              Greetings! I am Igor, a Software Engineer dedicated 
-              to writing efficient code and 
-              solving technical challenges with a solid engineering foundation.
+              {t.about.pillars}{" "}
+              <span className="text-gold">{t.about.pillar_uva}</span>{" "}
+              {t.about.pillar_uva_desc}{" "}
+              <span className="text-gold">{t.about.pillar_puc}</span>
+              {t.about.pillar_puc_desc}
             </p>
-            <p>
-              My technical journey is built on two main pillars: a{" "}
-              <span className="text-gold">
-                B.S. in Computer Science from UVA,
-              </span>{" "}
-              which provided me with deep knowledge in algorithms and systems, and my current{" "}
-              <span className="text-gold">
-                Post-grad in Software Engineering at PUC-Rio
-              </span>
-              , where I am mastering architectural patterns and system scalability.
-            </p>
-            <p>
-              I am focused on bridging the gap between complex theoretical concepts
-               and practical, secure software delivery.
-            </p>
-            <p>
-              Here are some technologies I have been working with recently:
-            </p>
+            <p>{t.about.focus}</p>
+            <p>{t.about.tech_intro}</p>
 
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 font-mono text-sm mt-4">
               {technologies.map((tech) => (

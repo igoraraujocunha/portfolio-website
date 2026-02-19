@@ -1,27 +1,27 @@
 "use client";
 
-import { useState, useRef, useEffect, type KeyboardEvent } from "react";
+import { useState, useRef, useEffect, KeyboardEvent } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./section-heading";
+import { useLanguage } from "@/hooks/use-language";
 
 interface TerminalLine {
   type: "input" | "output" | "error";
   content: string;
 }
 
-const COMMANDS: Record<string, string> = {
-  help: "Available commands: help, about, games, skills, contact, clear",
-  about:
-    "Igor de Araujo C. Costa - Computer Scientist & Software Engineer. \nB.S. in Computer Science from UVA.\nPost-grad in Software Engineering at PUC-Rio.",
-  games: "Valorant, Project Zomboid, Arcane Odyssey",
-  skills:
-    "TypeScript, Java (Spring Boot), React, Next.js, Node.js, PostgreSQL, AWS, Docker, Lua, Git, CI/CD",
-  contact: "GitHub: github.com/igoraraujocunha\nLinkedIn: linkedin.com/in/igoraraujocunha/\nEmail: igor.araujo.dev@outlook.com",
-};
-
 export function TerminalSection() {
+  const { t } = useLanguage();
+  
+  const COMMANDS: Record<string, string> = {
+    help: t.terminal.help,
+    about: t.terminal.about,
+    skills: "TypeScript, Java (Spring Boot), React, Next.js, Node.js, PostgreSQL, AWS, Docker, Git",
+    contact: "GitHub: github.com/igoraraujocunha\nLinkedIn: linkedin.com/in/igoraraujocunha/\nEmail: igor.araujo.dev@outlook.com",
+  };
+
   const [lines, setLines] = useState<TerminalLine[]>([
-    { type: "output", content: 'Welcome to Igor\'s terminal. Type "help" for available commands.' },
+    { type: "output", content: t.terminal.welcome },
   ]);
   const [input, setInput] = useState<string>("");
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -33,17 +33,13 @@ export function TerminalSection() {
 
   const handleCommand = (cmd: string) => {
     const trimmed = cmd.trim().toLowerCase();
-    const newLines: TerminalLine[] = [
-      ...lines,
-      { type: "input", content: trimmed },
-    ];
+    const newLines: TerminalLine[] = [...lines, { type: "input", content: trimmed }];
 
     if (trimmed === "clear") {
       setLines([]);
       setInput("");
       return;
     }
-
     if (trimmed === "") {
       setLines(newLines);
       setInput("");
@@ -53,22 +49,12 @@ export function TerminalSection() {
     const response = COMMANDS[trimmed];
     if (response) {
       const outputLines = response.split("\n").map(
-        (line): TerminalLine => ({
-          type: "output",
-          content: line,
-        })
+        (line): TerminalLine => ({ type: "output", content: line })
       );
       setLines([...newLines, ...outputLines]);
     } else {
-      setLines([
-        ...newLines,
-        {
-          type: "error",
-          content: `Command not found: ${trimmed}. Type "help" for available commands.`,
-        },
-      ]);
+      setLines([...newLines, { type: "error", content: `${t.terminal.error}${trimmed}.` }]);
     }
-
     setInput("");
   };
 
@@ -81,7 +67,7 @@ export function TerminalSection() {
   return (
     <section id="terminal" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="05" title="Terminal" />
+        <SectionHeading number="05" title={t.nav.terminal} />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -90,30 +76,21 @@ export function TerminalSection() {
           transition={{ duration: 0.5 }}
           className="rounded-lg border border-border bg-secondary/80 overflow-hidden shadow-2xl shadow-background/50"
         >
-          {/* Title bar */}
           <div className="flex items-center gap-2 px-4 py-3 bg-secondary border-b border-border">
             <div className="h-3 w-3 rounded-full bg-red-500/80" />
             <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
             <div className="h-3 w-3 rounded-full bg-green-500/80" />
-            <span className="ml-3 text-xs font-mono text-muted-foreground">
-              igor@portfolio:~
-            </span>
+            <span className="ml-3 text-xs font-mono text-muted-foreground">igor@portfolio:~</span>
           </div>
 
-          {/* Terminal body */}
           <div
             className="p-4 font-mono text-sm h-72 overflow-y-auto cursor-text"
             onClick={() => inputRef.current?.focus()}
-            role="log"
-            aria-label="Terminal output"
           >
             {lines.map((line, i) => (
               <div key={i} className="leading-relaxed">
                 {line.type === "input" ? (
-                  <span>
-                    <span className="text-gold">{">"}</span>{" "}
-                    <span className="text-foreground">{line.content}</span>
-                  </span>
+                  <span><span className="text-gold">{">"}</span> <span className="text-foreground">{line.content}</span></span>
                 ) : line.type === "error" ? (
                   <span className="text-red-400">{line.content}</span>
                 ) : (
@@ -121,8 +98,6 @@ export function TerminalSection() {
                 )}
               </div>
             ))}
-
-            {/* Input line */}
             <div className="flex items-center gap-2 mt-1">
               <span className="text-gold">{">"}</span>
               <input
@@ -133,7 +108,6 @@ export function TerminalSection() {
                 onKeyDown={handleKeyDown}
                 className="flex-1 bg-transparent text-foreground outline-none caret-gold"
                 spellCheck={false}
-                aria-label="Terminal input"
               />
             </div>
             <div ref={bottomRef} />

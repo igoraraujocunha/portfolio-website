@@ -3,57 +3,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./section-heading";
-
-interface ExperienceEntry {
-  company: string;
-  title: string;
-  range: string;
-  bullets: string[];
-  tags: string[];
-}
-
-const experiences: ExperienceEntry[] = [
-  {
-    company: "Fynco Lab",
-    title: "Fullstack Developer",
-    range: "Jun 2025 - Present",
-    bullets: [
-      "Founded Fynco, a financial management platform focused on scalability and clean architecture.",
-    ],
-    tags: ["TypeScript", "Next.js", "Tailwind CSS", "Node.js(pnpm)", "Java", "Spring Boot", "Spring Security", "Hibernate", "OAuth2", "PostgreSQL", "H2 Database", "Maven", "Lombok", "Sendgrid"],
-  },
-  {
-    company: "Academic",
-    title: "Software Engineering Student @ PUC-Rio",
-    range: "Feb 2026 - Present",
-    bullets: [
-      "Pursuing a Post-grad in Software Engineering with a focus on architecture patterns, agile methodologies, and modern development practices.",
-      "Building projects applying clean architecture, SOLID principles, and test-driven development strategies.",
-      "Researching scalable system design and distributed computing concepts.",
-    ],
-    tags: ["Clean Architecture", "SOLID", "TDD", "Microservices"],
-  },
-  {
-    company: "University",
-    title: "B.S. Computer Science @ UVA",
-    range: "Feb 2022 - Dec 2025",
-    bullets: [
-      "Completed a Bachelor of Science in Computer Science with focus on algorithms, data structures, and software engineering.",
-      "Developed projects involving full-stack web applications, database design, and system programming.",
-      "Participated in coding competitions and collaborative open-source projects.",
-    ],
-    tags: ["Java", "Python", "SQL", "Algorithms", "C"],
-  },
-];
+import { useLanguage } from "@/hooks/use-language";
 
 export function ExperienceSection() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<number>(0);
-  const active = experiences[activeTab];
+  const active = t.experience.jobs[activeTab];
 
   return (
     <section id="experience" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="02" title="Experience" />
+        <SectionHeading number="02" title={t.experience.title} />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,7 +26,7 @@ export function ExperienceSection() {
             role="tablist"
             className="relative flex md:flex-col overflow-x-auto md:overflow-x-visible border-b md:border-b-0 md:border-l border-border"
           >
-            {experiences.map((exp, i) => (
+            {t.experience.jobs.map((exp, i) => (
               <button
                 key={exp.company}
                 role="tab"
@@ -108,7 +68,7 @@ export function ExperienceSection() {
               </ul>
 
               <ul className="mt-8 flex flex-wrap gap-3 font-mono text-xs text-muted-foreground">
-                {active.tags.map((tag) => (
+                {active.tags?.map((tag: string) => (
                   <li key={tag} className="rounded-full bg-gold/10 px-3 py-1 text-gold border border-gold/10">
                     {tag}
                   </li>

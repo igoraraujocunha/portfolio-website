@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Fira_Code } from 'next/font/google'
+import { LanguageProvider } from '@/hooks/use-language'
 
 import './globals.css'
 
@@ -29,12 +30,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} ${firaCode.variable} font-sans antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <LanguageProvider>
+      <html className="scroll-smooth">
+        <body
+          className={`${inter.variable} ${firaCode.variable} font-sans antialiased bg-background text-foreground`}
+        >
+          {children}
+        </body>
+      </html>
+    </LanguageProvider>
   )
 }
