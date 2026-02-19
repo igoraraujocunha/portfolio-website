@@ -4,7 +4,6 @@ import { AboutSection } from "@/components/portfolio/about-section";
 import { ExperienceSection } from "@/components/portfolio/experience-section";
 import { EducationSection } from "@/components/portfolio/education-section";
 import { ProjectsSection } from "@/components/portfolio/projects-section";
-import { SetupSection } from "@/components/portfolio/setup-section";
 import { TerminalSection } from "@/components/portfolio/terminal-section";
 
 export default function Page() {
@@ -15,7 +14,6 @@ export default function Page() {
       <ExperienceSection />
       <EducationSection />
       <ProjectsSection />
-      {/* <SetupSection /> */}
       <TerminalSection />
     </PortfolioLayout>
   );

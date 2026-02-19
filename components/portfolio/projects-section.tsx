@@ -15,10 +15,10 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Fynco",
+    title: "VavaHelper",
     description:
-      "A modern financial management platform designed for scalability. Built with clean architecture principles and comprehensive testing. Features include real-time data processing, modular API design, and an intuitive dashboard interface.",
-    tags: ["TypeScript", "Next.js", "PostgreSQL", "Tailwind CSS"],
+      "A robust multi-platform system designed for the Valorant community. It features a dedicated REST API for processing Riot Games data, a high-performance analytics web hub, and a mobile companion app, showcasing expertise in distributed systems and real-time data integration.",
+    tags: ["Typescript", "React", "Next.js", "Tailwind CSS", "Java", "Spring Boot", "Spring Security", "JPA", "JWT", "PostgreSQL", "Maven", "Ionic", "Vue.js", "Axios"],
     featured: true,
     github: "#",
     external: "#",
@@ -109,37 +109,34 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <Folder className="h-10 w-10 text-gold" />
         <div className="flex gap-3">
           {project.github && (
-            <a
-              href={project.github}
-              className="text-muted-foreground hover:text-gold transition-colors"
-              aria-label={`GitHub link for ${project.title}`}
-            >
+            <a href={project.github} className="text-muted-foreground hover:text-gold transition-colors">
               <Github className="h-5 w-5" />
             </a>
           )}
           {project.external && (
-            <a
-              href={project.external}
-              className="text-muted-foreground hover:text-gold transition-colors"
-              aria-label={`External link for ${project.title}`}
-            >
+            <a href={project.external} className="text-muted-foreground hover:text-gold transition-colors">
               <ExternalLink className="h-5 w-5" />
             </a>
           )}
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-gold transition-colors">
+      <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-gold transition-colors text-left">
         {project.title}
       </h3>
 
-      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
+      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6 text-left">
         {project.description}
       </p>
 
-      <ul className="flex flex-wrap gap-2 font-mono text-xs text-muted-foreground">
+      <ul className="flex flex-wrap gap-3 font-mono text-[10px] text-muted-foreground">
         {project.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
+          <li 
+            key={tag}
+            className="rounded-full bg-gold/5 px-2 py-1 text-gold/80 border border-gold/10"
+          >
+            {tag}
+          </li>
         ))}
       </ul>
     </motion.div>

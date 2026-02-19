@@ -150,7 +150,7 @@ export function EducationSection() {
   return (
     <section id="education" className="px-6 py-24">
       <div className="mx-auto w-full max-w-4xl">
-        <SectionHeading number="04" title="Education" />
+        <SectionHeading number="03" title="Education" />
 
         <div className="grid gap-6 md:grid-cols-2 mb-24">
           {academic.map((edu) => (
