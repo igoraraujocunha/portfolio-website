@@ -11,6 +11,7 @@ interface EducationItem {
   institution: string;
   period?: string;
   description: string;
+  concepts?: string;
   featured: boolean;
   status?: string;
 }
@@ -40,6 +41,11 @@ function CertificationCard({ cert, index }: { cert: EducationItem; index: number
           {cert.institution}
         </span>
         
+        {cert.concepts && (
+          <span className="text-[10px] text-foreground font-mono leading-tight mb-1">
+            {cert.concepts}
+          </span>
+        )}
         <AnimatePresence>
           {isHovered && (
             <motion.div

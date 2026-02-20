@@ -1,3 +1,5 @@
+import { Tags } from "lucide-react";
+
 export const en = {
   nav: {
     about: "About",
@@ -36,28 +38,6 @@ export const en = {
         bullets: ["A financial management platform focused on scalability and clean architecture."],
         tags: ["TypeScript", "Next.js", "Tailwind CSS", "Node.js(pnpm)", "Java", "Spring Boot", "Spring Security", "Hibernate", "OAuth2", "PostgreSQL", "H2 Database", "Maven", "Lombok", "Sendgrid"]
       },
-      {
-        company: "Academic",
-        title: "Software Engineering Student @ PUC-Rio",
-        range: "Feb 2026 - Present",
-        bullets: [
-          "Pursuing a Post-grad in Software Engineering with a focus on architecture patterns, agile methodologies, and modern development practices.",
-          "Building projects applying clean architecture, SOLID principles, and test-driven development strategies.",
-          "Researching scalable system design and distributed computing concepts."
-        ],
-        tags: ["Clean Architecture", "SOLID", "TDD", "Microservices"]
-      },
-      {
-        company: "University",
-        title: "B.S. Computer Science @ UVA",
-        range: "Feb 2022 - Dec 2025",
-        bullets: [
-          "Completed a Bachelor of Science in Computer Science with focus on algorithms, data structures, and software engineering.",
-          "Developed projects involving full-stack web applications, database design, and system programming.",
-          "Participated in coding competitions and collaborative open-source projects."
-        ],
-        tags: ["Java", "Python", "SQL", "Algorithms", "C"]
-      }
     ]
   },
   education: {
@@ -82,11 +62,12 @@ export const en = {
         featured: true
       },
       {
-        title: "Course 1",
-        institution: "Enterprise",
-        period: "2024",
+        title: "Internet of Things, AI, and the Connected Revolution",
+        institution: "PUCRS",
+        period: "Jan-Feb 2026",
         status: "",
-        description: "Description.",
+        description: "Training in IoT and AI technologies with an emphasis on data security and ethics. Addresses the practical application of the LGPD in cloud and edge architectures, discussing data sovereignty, digital sovereignty, and the responsible handling of information in connected networks and data spaces.",
+        concepts: "LGPD, Cloud/Edge Architecture, Web3",
         featured: false
       },
       {

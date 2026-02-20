@@ -82,11 +82,12 @@ export const pt = {
         featured: true
       },
       {
-        title: "Curso 1",
-        institution: "Empresa",
-        period: "2024",
+        title: "Internet das Coisas, IA e a Revolução Conectada",
+        institution: "PUCRS",
+        period: "Jan-Fev 2026",
         status: "",
-        description: "Descrição.",
+        description: "Formação em tecnologias de IoT e IA com ênfase em segurança e ética de dados. Aborda a aplicação prática da LGPD em arquiteturas de nuvem e de ponta, discutindo soberania de dados, soberania digital e o tratamento responsável de informações em redes conectadas e espaços de dados.",
+        concepts: "LGPD, Arquitetura Cloud/Edge, Web3",
         featured: false
       },
       {
