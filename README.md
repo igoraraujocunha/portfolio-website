@@ -6,9 +6,11 @@ Desenvolvido do zero para aplicar conceitos avançados de arquitetura e tecnolog
 
 Este projeto foi desenvolvido utilizando tecnologias modernas para garantir performance e internacionalização:
 
-* **Framework:** [Next.js 14+](https://nextjs.org/) (App Router)
+* **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+* **Biblioteca Base:** [React 19](https://react.dev/)
 * **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
-* **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+* **Estilização:** [Tailwind CSS](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+* **Animações:** [Framer Motion](https://www.framer.com/motion/)
 * **Gerenciador de Pacotes:** [pnpm](https://pnpm.io/)
 * **Internacionalização (i18n):** Suporte nativo para PT/EN
 * **Deploy:** [Netlify](https://www.netlify.com/)
