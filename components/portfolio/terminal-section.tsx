@@ -28,8 +28,10 @@ export function TerminalSection() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+  if (lines.length > 1) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [lines]);
+  }
+}, [lines]);
 
   const handleCommand = (cmd: string) => {
     const trimmed = cmd.trim().toLowerCase();
