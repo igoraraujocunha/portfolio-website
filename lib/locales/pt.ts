@@ -36,28 +36,6 @@ export const pt = {
         bullets: ["Uma plataforma de gestão financeira focada em escalabilidade e arquitetura limpa."],
         tags: ["TypeScript", "Next.js", "Tailwind CSS", "Node.js(pnpm)", "Java", "Spring Boot", "Spring Security", "Hibernate", "OAuth2", "PostgreSQL", "H2 Database", "Maven", "Lombok", "Sendgrid"]
       },
-      {
-        company: "Acadêmico",
-        title: "Estudante de Engenharia de Software @ PUC-Rio",
-        range: "Fev 2026 - Presente",
-        bullets: [
-          "Cursando pós-graduação em Engenharia de Software com foco em padrões de arquitetura, metodologias ágeis e práticas modernas de desenvolvimento.",
-          "Construindo projetos aplicando arquitetura limpa, princípios SOLID e estratégias de desenvolvimento orientado a testes (TDD).",
-          "Pesquisando design de sistemas escaláveis e conceitos de computação distribuída."
-        ],
-        tags: ["Clean Architecture", "SOLID", "TDD", "Microsserviços"]
-      },
-      {
-        company: "Universidade",
-        title: "Bacharel em Ciência da Computação @ UVA",
-        range: "Fev 2022 - Dez 2025",
-        bullets: [
-          "Concluído Bacharelado em Ciência da Computação com foco em algoritmos, estruturas de dados e engenharia de software.",
-          "Desenvolvimento de projetos envolvendo aplicações web full-stack, design de banco de dados e programação de sistemas.",
-          "Participação em competições de programação e projetos open-source colaborativos."
-        ],
-        tags: ["Java", "Python", "SQL", "Algoritmos", "C"]
-      }
     ]
   },
   education: {
